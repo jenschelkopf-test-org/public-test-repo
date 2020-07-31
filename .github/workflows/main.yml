@@ -1,0 +1,33 @@
+name: Test private/public actions
+
+on: [repository_dispatch]
+
+jobs:
+  private-action:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 'Execute action in private repo'
+        uses: jenschelkopf-test-org/private-action@master
+
+  public-action:
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name: 'Execute action in public repo'
+        uses: jenschelkopf-test-org/public-action@master
+
+  checkout-private-action:
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name: Checkout action that lives in a private action
+        uses: actions/checkout@v2
+        with:
+          repository: jenschelkopf-test-org/private-action
+          token: ${{ secrets.personal_access_token }}
+          path: .github/actions/private-action
+      - name: Execute the private action
+        uses: ./.github/actions/private-action
