@@ -1,6 +1,6 @@
 name: Test private/public actions
 
-on: [repository_dispatch]
+on: [workflow_dispatch]
 
 jobs:
   private-action:
