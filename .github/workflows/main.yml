@@ -18,16 +18,16 @@ jobs:
       - name: 'Execute action in public repo'
         uses: jenschelkopf-test-org/public-action@master
 
-  checkout-private-action:
-    runs-on: ubuntu-latest
-    if: always()
+#   checkout-private-action:
+#     runs-on: ubuntu-latest
+#     if: always()
     
-    steps:
-      - name: Checkout action that lives in a private action
-        uses: actions/checkout@v2
-        with:
-          repository: jenschelkopf-test-org/private-action
-          token: ${{ secrets.personal_access_token }}
-          path: .github/actions/private-action
-      - name: Execute the private action
-        uses: ./.github/actions/private-action
+#     steps:
+#       - name: Checkout action that lives in a private action
+#         uses: actions/checkout@v2
+#         with:
+#           repository: jenschelkopf-test-org/private-action
+#           token: ${{ secrets.personal_access_token }}
+#           path: .github/actions/private-action
+#       - name: Execute the private action
+#         uses: ./.github/actions/private-action
